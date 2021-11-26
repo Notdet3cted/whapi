@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +15,10 @@
     "axios": "^0.24.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "qrcode": "^1.5.0",
     "socket.io": "^4.4.0"
   }
 }
