@@ -76,7 +76,6 @@
                                         </div>
                                         <div class="card-body">
                                             <div id="cardimg" class="text-center p-3">
-                                                <img src="" alt="QR Code" id="qrcode">
                                             </div>
                                             <h5 class="card-title"><span class="text-dark">Status :</span>
                                                 <p class="logs"></p>
@@ -157,14 +156,37 @@
             transports: ['websocket', 'polling']
         });
 
+        socket.emit('ready', 'sdf');
+        socket.on('loader', function () {
+            $('#cardimg').html(`<img src="loading.gif" class="card-img-top center" alt="cardimg" id="qrcode"  style="height:250px; width:250px;">`);
+        })
         socket.on('message', function (msg) {
-            console.log(msg)
+            $('.logs').html(`<li>` + msg + `</li>`);
+        })
+        socket.on('qr', function (src) {
+            $('#cardimg').html(` <img src="` + src + `" class="card-img-top" alt="cardimg" id="qrcode" style="height:250px; width:250px;">`);
         });
 
-        socket.on('qr', function (src) {
-            $('#qrcode').attr('src', src);
-            $('#qrcode').show();
+        socket.on('authenticated', function (src) {
+            $('#cardimg').html(`<h2 class="text-center mt-4">Whatsapp Connected.<br>` + src + `<h2>`);
         });
+
+        $('#logout').click(function () {
+            $('#cardimg').html(`<h2 class="text-center text-dark mt-4">Please wait..<h2>`);
+            $('.logs').html(`<li>Connecting..</li>`);
+            socket.emit('logout', 'delete');
+        })
+
+        $('#scanqrr').click(function () {
+            socket.emit('scanqr', 'scanqr');
+        })
+        $('#cekstatus').click(function () {
+            socket.emit('cekstatus', 'cekstatus');
+        })
+
+        socket.on('isdelete', function (msg) {
+            $('#cardimg').html(msg);
+        })
     </script>
 </body>
 
