@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node main.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
     "express-validator": "^6.13.0",
     "http": "^0.0.1-security",
     "https": "^1.0.0",
+    "nodemon": "^2.0.15",
     "qrcode": "^1.5.0",
     "socket.io": "^4.4.0"
   }
